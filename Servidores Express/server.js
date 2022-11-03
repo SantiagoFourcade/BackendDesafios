@@ -3,19 +3,28 @@ const express = require("express")
 const server = express()
 
 server.get("/bienvenida", (peticion, respuesta) => {
-    respuesta.end("Hola!!")
+    respuesta.send("Hola!!")
 })
 
 server.get("/despedida", (peticion, respuesta) => {
-    respuesta.end("Adios!!")
+    respuesta.send("Adios!!")
+})
+
+server.get("/productos", (peticion, respuesta) => {
+    respuesta.send({Usuarios})
+})
+
+server.get("/productosRandom", (peticion, respuesta) => {
+    respuesta.send()
 })
 
 function conectar (puerto = 0) {
     return new Promise((resolve, reject) => {
-        const serverConnect = server.listen(puerto, err => {
-            if(err) reject(err)
-            else resolve(serverConnect)
+        const serverConnect = server.listen(puerto, () => {
+           
+        resolve(serverConnect)
         })
+        serverConnect.on("error", error => reject(error))
     })
 }
 
